@@ -15,6 +15,9 @@ TH1F * Histo2 (TTree * treeout, int channel, TString nameadd = "", Double_t min=
 	Extracting a TH1F from our data format... only works with files from daqmul and related... 
 	Needs to be fed with a TTree (see above). Name of the histogramm is "aaa_channel_nameadd 
 	
+TH1F * Histo(TString inputfile, int channel, Double_t min=-0.5, Double_t max=4000.5, int bins=4001)
+        All included function to get the Histogram directly from the file... suitable if you dont have to open many histograms from one file
+	unresolved: closing the file without crash... so works only a few hundred times in one script
 
 
 */
