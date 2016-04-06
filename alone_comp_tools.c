@@ -1,9 +1,23 @@
 /*
 Tool Library for analysing SiPMs and tiles from the Tiletester
 @C Sebastian Laurien (sebastian.laurine@gmx.de) 
+loaded in root with .L alone_comp_tools.c+
+
+Functions:
+Double_t langau(Double_t *x, Double_t *par) 
+	Landau Gauss convolution. Just the function returning a double
+
+TTree * load(TString inputfile,TString Name) 
+	Extracting a TTree from the inputfile
 
 
+TH1F * Histo2 (TTree * treeout, int channel, TString nameadd = "", Double_t min=1, Double_t max=4096, int bins=4096)
+	Extracting a TH1F from our data format... only works with files from daqmul and related... 
+	Needs to be fed with a TTree (see above). Name of the histogramm is "aaa_channel_nameadd 
+	
 
+
+*/
 #include "TH1F.h"
 #include "TTree.h"
 #include "TFile.h"
@@ -14,6 +28,9 @@ Tool Library for analysing SiPMs and tiles from the Tiletester
 #include "TSQLResult.h"
 #include "TSQLRow.h"
 #include "TGraph.h"
+
+
+
 /*Double_t fit_response(Double_t *x, Double_t *par){
   Double_t xx=x[0];
   Double_t result = TMath::Exp(par[0](xx-par[1])); //Gausfunction
@@ -76,9 +93,9 @@ Double_t langau(Double_t *x, Double_t *par) {
 }
 
 
-TTree * load(TString inputfile){
+TTree * load(TString inputfile, TString name="data"){
   TFile * datafile = new TFile((TString)inputfile);
-  TTree * treeout  = (TTree*)datafile->Get("data");
+  TTree * treeout  = (TTree*)datafile->Get(name);
   return treeout;
 }
 
